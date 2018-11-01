@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"grpc-rest-benchmark/calculator"
+	"grpc-golang-server/calculator"
 	"log"
 	"net"
 	"sync"
@@ -27,18 +27,14 @@ func (s *server) Sum(ctx context.Context, in *calculator.Numbers) (*calculator.R
 
 func main() {
 	lis, err := net.Listen("tcp", port)
-package = "calculator";
-package = "calculator";
-package = "calculator";
-package = "calculator";
-package = "calculator";
-package = "calculator";
-package = "calculator";
-package = "calculator";
-package = "calculator";
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+
 	wg.Add(1)
 
 	go func() {
+		s := grpc.NewServer()
 		reflection.Register(s)
 
 		if err := s.Serve(lis); err != nil {
