@@ -5,10 +5,8 @@ import (
 	"grpc-golang-server/calculator"
 	"log"
 	"net"
-	"sync"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 )
 
 const (
@@ -16,8 +14,6 @@ const (
 )
 
 type server struct{}
-
-var wg sync.WaitGroup
 
 // Sum implements calculator.Sum
 func (s *server) Sum(ctx context.Context, in *calculator.Numbers) (*calculator.Result, error) {
@@ -31,17 +27,12 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
-	wg.Add(1)
-
-	go func() {
-		s := grpc.NewServer()
-		reflection.Register(s)
-
-		if err := s.Serve(lis); err != nil {
-			log.Fatalf("failed to serve: %v", err)
-		}
-	}()
+	s := grpc.NewServer()
+	calculator.RegisterCalculatorServer(s, &server{})
 
 	log.Printf("gRPC server listening at port %s", port)
-	wg.Wait()
+
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }
