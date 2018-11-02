@@ -1,7 +1,7 @@
 # grpc-golang-server
-A gRPC server written in Golang
+A gRPC server written in Golang. This server contains a single gRPC method that returns the sum of two values, and a REST method that does the same, just for comparison purposes.
 
-The purpose is to benchmark how many requests client can make to server considering REST and gRPC as protocols.
+The main objective is to benchmark how many requests client can make to server considering REST and gRPC as protocols.
 
 There are two applications: one server written in Go (golang-grpc-server) and other written in Node.js (node-grpc-client).
 
