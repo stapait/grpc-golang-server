@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"fmt"
-	"grpc-golang-server/calculator"
 	"log"
 	"net"
 	"net/http"
 	"strconv"
 	"sync"
+
+	"github.com/stapait/grpc-golang-server/calculator"
 
 	"google.golang.org/grpc"
 )

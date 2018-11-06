@@ -9,7 +9,11 @@ Get both from repositories so they can talk with each other and you can get some
 
 ## Golang install
 
-First of all, clone repository into your ```$GOPATH/src``` folder
+First of all, get the project:
+
+```
+go get github.com/stapait/grpc-golang-server
+```
 
 ### Install gRPC lib
 ```
